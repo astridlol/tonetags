@@ -1,0 +1,46 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+export interface Props {
+  content: {
+    fullForm: string;
+    addedBy: string;
+    tag: string;
+  };
+}
+
+const {
+  content: { fullForm, addedBy, tag },
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`The ${tag} tonetag`}
+      description={`What does ${tag} mean, and why do people use it?`}
+    />
+  </head>
+
+  <body>
+    <Header />
+    <main>
+      <article>
+        <h1>{fullForm}</h1>
+        <div class="pt-4 text-neutral-200">
+          <div class="flex gap-x-2 items-center">Added by {addedBy}</div>
+          Edit on <a
+            href={`https://github.com/astridlol/tonetags-dictionary/tree/main/src/pages/tones/${tag}.mdx`}
+          >
+            GitHub
+          </a>
+        </div>
+        <hr class="border-(t t-neutral-700) my-8" />
+        <slot />
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,26 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import { ToneTags } from '../components/ToneTags';
+import Base from '../layouts/Base.astro';
+
+const indicators = await Astro.glob('./tones/*.{md,mdx}');
+---
+
+<Base title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <main class="prose">
+    <p>
+      <small class="text-neutral-600 dark:text-neutral-500">tone tags</small>
+      <br />
+      Tone tags are indicators used within speach to help readers understand tone.
+      They're often used by people with neurodiversity, and they tend to help out
+      a lot. Below are <span class="italic">some</span> tone tags, but be aware it's
+      not an exaustive list.
+    </p>
+
+    <div class="ma">
+      <div class="">
+        <ToneTags posts={indicators} />
+      </div>
+    </div>
+  </main>
+</Base>

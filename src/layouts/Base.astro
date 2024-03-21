@@ -1,0 +1,142 @@
+---
+import Footer from "../components/Footer.astro";
+
+type Props = {
+  title: string;
+  description: string;
+};
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <!-- global metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://cdn.upload.systems/uploads/r2svMbGk.png"
+    />
+    <meta name="theme-color" content="#9fd7ee" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- primary meta tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- open graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="tone tags" />
+    <meta property="og:url" content={Astro.url} />
+    <meta
+      property="og:image"
+      content="https://cdn.upload.systems/uploads/r2svMbGk.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="256" />
+    <meta property="og:image:height" content="256" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- twitter -->
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- link tags -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script
+      defer
+      data-domain="tonetags.astrid.sh"
+      src="https://analytics.astrid.sh/js/script.js"
+    ></script>
+  </head>
+
+  <body>
+    <div class="mx-auto max-w-container px-4">
+      <slot />
+      <div class="mt-24"></div>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  body,
+  html {
+    @apply overflow-x-hidden;
+  }
+
+  html {
+    @apply antialiased touch-manipulation scroll-smooth text-base;
+    text-rendering: optimizeLegibility;
+
+    &.dark {
+      color-scheme: dark;
+    }
+  }
+
+  * {
+    @apply outline-black selection-(bg-neutral-200 text-black) dark:(outline-white selection-(bg-neutral-700 text-white));
+  }
+
+  body {
+    font-family: "Switzer", "Switzer Fallback";
+    @apply text-neutral-800 bg-neutral-100 dark:(text-neutral-300 bg-neutral-900) px-0 md:px-4 py-4 md:py-8 relative min-h-screen text-sm md:text-base;
+  }
+
+  code,
+  pre {
+    font-family: "Hack", "Courier New", Courier, monospace;
+  }
+
+  .prose {
+    @apply max-w-container [&>:not(:last-child)]:mb-6;
+
+    & p {
+      @apply my-6 line-height-7.2;
+    }
+
+    & h1,
+    & h2,
+    & h3 {
+      @apply text-imp font-semibold my-8;
+    }
+
+    & h1 {
+      @apply text-2xl;
+    }
+
+    & h2 {
+      @apply text-xl;
+    }
+
+    & h3 {
+      @apply text-lg;
+    }
+
+    & strong {
+      @apply font-medium text-imp;
+    }
+
+    & hr {
+      @apply border-neutral-300 dark:border-neutral-600 border-b-0.5;
+    }
+
+    & ul {
+      @apply list-disc list-outside pl-4;
+    }
+
+    & ul > li {
+      @apply mb-6;
+    }
+
+    & img {
+      @apply mx-auto rounded my-6;
+    }
+  }
+</style>
